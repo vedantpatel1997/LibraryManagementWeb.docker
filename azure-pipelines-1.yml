@@ -14,7 +14,7 @@ variables:
   imageRepository: 'librarywebimagecheck'
   containerRegistry: 'tempcheck.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: '$(Build.BuildId)'
+  tag: 'production'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
