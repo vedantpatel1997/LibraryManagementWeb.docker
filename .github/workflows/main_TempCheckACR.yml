@@ -25,13 +25,18 @@ jobs:
         registry: https://tempcheck.azurecr.io/
         username: ${{ secrets.AzureAppService_ContainerUsername_2be00ee7a1dc4f0fa7a67a925391e4cd }}
         password: ${{ secrets.AzureAppService_ContainerPassword_24b833e2ed1e4046b750f50cc575ff39 }}
-
+        
+    - name: Get short SHA
+      id: short_sha
+      run: echo "::set-output name=short_sha::$(echo ${{ github.sha }} | cut -c1-8)"
+    
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: 'tempcheck.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_2be00ee7a1dc4f0fa7a67a925391e4cd }}/librarywebimagecheck:production'
+        tags: tempcheck.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_2be00ee7a1dc4f0fa7a67a925391e4cd }}/librarywebimagecheck:${{ steps.short_sha.outputs.short_sha }}
         file: ./Dockerfile
+   
 
   deploy:
     runs-on: ubuntu-latest
