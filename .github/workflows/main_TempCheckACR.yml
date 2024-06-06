@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: tempcheck.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_2be00ee7a1dc4f0fa7a67a925391e4cd }}/librarywebimagecheck:${{ github.sha }}-${{ github.sha | hash | substring(0,8) }}
+        tags: tempcheck.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_2be00ee7a1dc4f0fa7a67a925391e4cd }}/librarywebimagecheck:${{ github.sha }}}}
 
         file: ./Dockerfile
 
