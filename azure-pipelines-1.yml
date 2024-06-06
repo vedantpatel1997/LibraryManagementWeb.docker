@@ -37,3 +37,21 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+
+- stage: Deploy
+  displayName: Deploy
+  jobs:
+  - job: Deploy
+    displayName: Deploy
+    pool:
+      vmImage: $(vmImageName)
+    steps:         
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Azure for Students (f72dc808-adb3-45e6-a4df-03437097bd04)'
+        appType: 'webAppContainer'
+        WebAppName: 'TempCheckACR'
+        DockerNamespace: 'tempcheck.azurecr.io'
+        DockerRepository: '$(imageRepository)'
+        DockerImageTag: '$(tag)'
