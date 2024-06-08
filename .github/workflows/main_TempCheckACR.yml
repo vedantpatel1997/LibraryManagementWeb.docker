@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: tempcheck.azurecr.io/librarywebimagecheck:production
+        tags: tempcheck.azurecr.io/librarywebimagecheck:{{github.sha}}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'TempCheckACR'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_317f1f5b0d294758a4249a6a42287c94 }}
-        images: 'tempcheck.azurecr.io/librarywebimagecheck:production'
+        images: 'tempcheck.azurecr.io/librarywebimagecheck:{{github.sha}}'
