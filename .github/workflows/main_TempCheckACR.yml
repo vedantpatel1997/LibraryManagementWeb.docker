@@ -25,13 +25,22 @@ jobs:
         registry: https://tempcheck.azurecr.io/
         username: ${{ secrets.AzureAppService_ContainerUsername_2be00ee7a1dc4f0fa7a67a925391e4cd }}
         password: ${{ secrets.AzureAppService_ContainerPassword_24b833e2ed1e4046b750f50cc575ff39 }}
-
+        
+    - name: Get short SHA
+      id: short_sha
+      run: echo "::set-output name=short_sha::$(echo ${{ github.sha }} | cut -c1-8)"
+    
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
+<<<<<<< HEAD
         tags: tempcheck.azurecr.io/librarywebimagecheck:${{ github.sha }}
+=======
+        tags: tempcheck.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_2be00ee7a1dc4f0fa7a67a925391e4cd }}/librarywebimagecheck:${{ steps.short_sha.outputs.short_sha }}
+>>>>>>> 1a0766acd472d02067bb5264c9d9ef7427e595d6
         file: ./Dockerfile
+   
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,6 +57,7 @@ jobs:
         app-name: 'TempCheckACR'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_4c7acdf581df43d7ae83b57dd2f41bd3 }}
+<<<<<<< HEAD
         images: 'tempcheck.azurecr.io/librarywebimagecheck:${{ github.sha }}'
 
 
@@ -91,3 +101,6 @@ jobs:
 #           app-name: "growthcloudupload"
 #           publish-profile: ${{ secrets.AZURE_GC_UPLOAD_PUBLISH_PROFILE_PRODUCTION }}
 #           images: "growthcloud.azurecr.io/gcapi:production"
+=======
+        images: 'tempcheck.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_2be00ee7a1dc4f0fa7a67a925391e4cd }}/librarywebimagecheck:production'
+>>>>>>> 1a0766acd472d02067bb5264c9d9ef7427e595d6
