@@ -30,22 +30,8 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: tempcheck.azurecr.io/librarywebimagecheck:production${{ github.sha }}
+        #tags: tempcheck.azurecr.io/librarywebimagecheck:production${{ github.sha }}
+        tags: tempcheck.azurecr.io/librarywebimagecheck:latest
         file: ./Dockerfile
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-    - name: Deploy to Azure Web App
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'TempCheckACR'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_317f1f5b0d294758a4249a6a42287c94 }}
-        images: 'tempcheck.azurecr.io/librarywebimagecheck:production${{ github.sha }}'
+  
