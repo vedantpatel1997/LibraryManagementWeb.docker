@@ -30,8 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        #tags: tempcheck.azurecr.io/librarywebimagecheck:production${{ github.sha }}
-        tags: tempcheck.azurecr.io/librarywebimagecheck:latest
+        tags: tempcheck.azurecr.io/librarywebimagecheck:production${{ github.sha }}
         file: ./Dockerfile
 
   
