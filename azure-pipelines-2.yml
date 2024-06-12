@@ -14,7 +14,7 @@ variables:
   imageRepository: 'libraryimage'
   containerRegistry: 'containerregistryvkp.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: '$(date:yyyyMMdd)$(Rev:.r)'
+  tag: ''
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
