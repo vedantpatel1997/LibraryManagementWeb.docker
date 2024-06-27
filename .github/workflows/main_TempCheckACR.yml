@@ -13,10 +13,10 @@ jobs:
  
       - uses: azure/docker-login@v1
         with:
-          login-server: vpacrlibrary.azurecr.io
-          username: VPACRLibrary
-          password: 4WiQlmP/nWipkosQPstMcoUwQd3u0fAcZCrYbsFAL1+ACRA92WVT
+          login-server: libraryvp.azurecr.io
+          username: ${{ secrets.AZURE_REGISTRY_NAME }}
+          password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
  
       - run: |
-          docker build . -t vpacrlibrary.azurecr.io/libraryweb:production
-          docker push vpacrlibrary.azurecr.io/libraryweb:production
+          docker build . -t libraryvp.azurecr.io/libraryweb:production
+          docker push libraryvp.azurecr.io/libraryweb:production
