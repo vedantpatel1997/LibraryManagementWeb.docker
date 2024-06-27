@@ -18,5 +18,5 @@ jobs:
           password: 4WiQlmP/nWipkosQPstMcoUwQd3u0fAcZCrYbsFAL1+ACRA92WVT
  
       - run: |
-          docker build . -t vpacrlibrary.azurecr.io/library:production
-          docker push vpacrlibrary.azurecr.io/library:production
+          docker build . -t vpacrlibrary.azurecr.io/libraryweb:production
+          docker push vpacrlibrary.azurecr.io/libraryweb:production
